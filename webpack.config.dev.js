@@ -6,6 +6,7 @@ export default {
   devtool: 'inline-source-map',
   noInfo: false,
   entry: [
+    path.resolve(__dirname, 'scripts/livereload'),
     path.resolve(__dirname, 'src/main')
   ],
   target: 'web',

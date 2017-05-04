@@ -3,12 +3,16 @@ import path from 'path';
 import open from 'open';
 import webpack from 'webpack';
 import config from '../webpack.config.dev';
+import livereload from 'livereload';
 
 /* eslint-disable no-console */
 
 const port = 3000;
 const app = express();
 const compiler = webpack(config);
+const lrserver = livereload.createServer();
+
+lrserver.watch(path.join(__dirname, '../src'));
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
