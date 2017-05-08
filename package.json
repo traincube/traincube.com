@@ -16,7 +16,7 @@
     "clean-dist":"rimraf ./dist && mkdir dist",
     "prebuild":"npm-run-all clean-dist test lint",
     "build":"webpack --config webpack.config.prod.js",
-    "postbuild":"cd dist && open http://localhost:3000 && serve"
+    "postbuild":"cd dist && serve"
   },
   "author": "Hendrix Tavarez",
   "license": "MIT",
