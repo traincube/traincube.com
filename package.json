@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Traincube Website",
   "scripts": {
-    "prestart": "babel-node scripts/start_message.js",
+    "prestart": "open http://localhost:8080",
     "start": "npm-run-all --parallel security-check start-server lint:watch test:watch",
     "start-server": "webpack-dev-server -d --hot -w --config webpack.config.dev.js",
     "lint": "esw webpack.config.* src scripts --color",
@@ -14,7 +14,7 @@
     "test": "mocha --reporter progress scripts/test.js \"src/**/*.test.js\"",
     "test:watch": "npm run test -- --watch",
     "clean-dist":"rimraf ./dist && mkdir dist",
-    "prebuild":"npm-run-all clean-dist test lint",
+    "prebuild":"npm-run-all clean-dist test lint && open http://localhost:3000",
     "build":"webpack --config webpack.config.prod.js",
     "postbuild":"cd dist && serve"
   },
