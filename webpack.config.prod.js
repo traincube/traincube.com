@@ -1,13 +1,11 @@
-import path from 'path';
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import WebpackMd5Hash from 'webpack-md5-hash';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-export default {
-  debug: true,
+module.exports = {
   devtool: 'source-map',
-  noInfo: false,
   entry: {
     vendor: [
       path.resolve(__dirname, 'src/vendor'),
@@ -56,15 +54,14 @@ export default {
     }),
 
     // Eliminate duplicate packages when generating bundle
-    new webpack.optimize.DedupePlugin(),
+    // new webpack.optimize.DedupePlugin(),
 
     // Minify JS
     new webpack.optimize.UglifyJsPlugin()
   ],
   module: {
-    loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
-      {test: /\.css$/, loader: ExtractTextPlugin.extract('css?sourceMap')}
+    rules: [
+      {test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader')}
     ]
   }
 }

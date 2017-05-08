@@ -1,12 +1,16 @@
-import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+// import path from 'path';
+// import HtmlWebpackPlugin from 'html-webpack-plugin';
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-export default {
-  debug: true,
+module.exports = {
+// export default {
+  // debug: true,
   devtool: 'inline-source-map',
-  noInfo: false,
+  // noInfo: false,
   entry: [
-    path.resolve(__dirname, 'scripts/livereload'),
+    // path.resolve(__dirname, 'scripts/livereload'),
     path.resolve(__dirname, 'src/main')
   ],
   target: 'web',
@@ -16,6 +20,7 @@ export default {
     filename: 'bundle.js'
   },
   plugins: [
+    new ExtractTextPlugin('main.css'),
     // Create HTML file that includes reference to bundled JS
     new HtmlWebpackPlugin({
       template: 'src/index.html',
@@ -23,9 +28,9 @@ export default {
     })
   ],
   module: {
-    loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
-      {test: /\.css$/, loaders: ['style','css']}
+    rules: [
+      {test: /\.css$/, loader: 'style-loader'},
+      {test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader')}
     ]
   }
 }
