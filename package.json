@@ -5,7 +5,7 @@
   "scripts": {
     "prestart": "babel-node scripts/start_message.js",
     "start": "npm-run-all --parallel security-check start-server lint:watch test:watch",
-    "start-server": "babel-node scripts/dev_server.js",
+    "start-server": "webpack-dev-server -d --hot -w --config webpack.config.dev.js",
     "lint": "esw webpack.config.* src scripts --color",
     "lint:watch": "npm run lint -- --watch",
     "security-check": "nsp check",
@@ -15,8 +15,8 @@
     "test:watch": "npm run test -- --watch",
     "clean-dist":"rimraf ./dist && mkdir dist",
     "prebuild":"npm-run-all clean-dist test lint",
-    "build":"babel-node scripts/build.js",
-    "postbuild":"babel-node scripts/prod_server.js"
+    "build":"webpack --config webpack.config.prod.js",
+    "postbuild":"cd dist && open http://localhost:3000 && serve"
   },
   "author": "Hendrix Tavarez",
   "license": "MIT",
@@ -40,8 +40,8 @@
     "eslint-watch": "2.1.14",
     "express": "4.14.0",
     "livereload":"0.6.2",
-    "extract-text-webpack-plugin": "1.0.1",
-    "html-webpack-plugin": "2.22.0",
+    "extract-text-webpack-plugin": "2.1.0",
+    "html-webpack-plugin": "2.28.0",
     "jsdom": "9.8.0",
     "json-schema-faker": "0.3.6",
     "json-server": "0.8.22",
@@ -53,8 +53,7 @@
     "open": "0.0.5",
     "rimraf": "2.5.4",
     "style-loader": "0.13.1",
-    "webpack": "1.13.2",
-    "webpack-dev-middleware": "1.8.4",
+    "webpack": "2.4.1",
     "webpack-md5-hash": "0.0.5"
   }
 }
