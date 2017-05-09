@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -53,8 +54,7 @@ module.exports = {
       trackJSToken:'[YOUR_TOKEN_HERE]'
     }),
 
-    // Eliminate duplicate packages when generating bundle
-    // new webpack.optimize.DedupePlugin(),
+    new OptimizeCssAssetsPlugin(),
 
     // Minify JS
     new webpack.optimize.UglifyJsPlugin()
