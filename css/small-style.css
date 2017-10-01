@@ -80,8 +80,7 @@ a:active{
 section{
     margin:  5px 0 5px 0;
     padding: 5%;
-    height: 300px;
-   /* text-shadow: .5px .5px 0 #111111;*/
+    text-shadow: .5px .5px 0 #FFFFFF;
 }
 h1,h2,h3,h4,h5,h6{
     clear: both;
@@ -93,7 +92,8 @@ h1,h2,h3,h4,h5,h6{
     background-image: url("../images/hands-on-computer.jpg");
     background-size:cover;
     background-repeat: no-repeat;
-    padding-top: 20%;
+    padding-top: 25vh;
+    height: 100vh;
 }
 footer{
     text-align: center;
